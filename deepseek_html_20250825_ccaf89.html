@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitLab Managed Instance Pricing - KSA Region</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #2d3748;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #0a2463 0%, #1e40af 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .calculator-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .input-panel {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .result-panel {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        h2 {
+            color: #1e40af;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+        
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        input[type="range"] {
+            flex: 1;
+            -webkit-appearance: none;
+            height: 8px;
+            border-radius: 4px;
+            background: #e0e0e0;
+            outline: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #1e40af;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb:hover {
+            background: #0a2463;
+        }
+        
+        .users-input-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .users-input {
+            width: 100px;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            text-align: center;
+        }
+        
+        .users-input:focus {
+            border-color: #1e40af;
+            outline: none;
+        }
+        
+        .users-value {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #1e40af;
+            min-width: 60px;
+            text-align: right;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        
+        .radio-option input[type="radio"] {
+            accent-color: #1e40af;
+        }
+        
+        .addon-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            background: #f9f9f9;
+            transition: all 0.3s;
+        }
+        
+        .addon-option:hover {
+            background: #f0f0f0;
+            border-color: #1e40af;
+        }
+        
+        .addon-info {
+            flex: 1;
+        }
+        
+        .addon-title {
+            font-weight: 600;
+            color: #4a5568;
+        }
+        
+        .addon-description {
+            font-size: 0.9rem;
+            color: #718096;
+        }
+        
+        .addon-price {
+            font-weight: bold;
+            color: #1e40af;
+            margin-left: 15px;
+        }
+        
+        .addon-input {
+            width: 80px;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .price-breakdown {
+            margin-top: 30px;
+        }
+        
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .price-item:last-child {
+            border-bottom: none;
+        }
+        
+        .total {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1e40af;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+        
+        .bracket-info {
+            background-color: #f1f5f9;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .bracket-info h4 {
+            margin-bottom: 10px;
+            color: #4a5568;
+        }
+        
+        .bracket-info ul {
+            list-style-type: none;
+        }
+        
+        .bracket-info li {
+            padding: 8px 0;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .bracket-info li:last-child {
+            border-bottom: none;
+        }
+        
+        .bracket-info li span:first-child {
+            font-weight: 500;
+        }
+        
+        .current-bracket {
+            background-color: #e0e7ff;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 15px;
+            border-left: 4px solid #1e40af;
+        }
+        
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .pricing-table th, .pricing-table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        
+        .pricing-table th {
+            background-color: #f1f5f9;
+        }
+        
+        .pricing-table tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .highlight {
+            background-color: #e0e7ff !important;
+            font-weight: bold;
+        }
+        
+        .value-proposition {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
+        }
+        
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .value-card {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #1e40af;
+            transition: transform 0.3s;
+            height: 100%;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .value-icon {
+            font-size: 2rem;
+            color: #1e40af;
+            margin-bottom: 15px;
+        }
+        
+        .value-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #4a5568;
+        }
+        
+        .value-description {
+            color: #718096;
+            line-height: 1.5;
+        }
+        
+        .professional-services {
+            background: linear-gradient(135deg, #0a2463 0%, #1e40af 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            margin: 40px 0;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .service-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #a3bffa;
+        }
+        
+        .testimonial {
+            background: linear-gradient(135deg, #0a2463 0%, #1e40af 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .testimonial-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+        }
+        
+        .publishing-info {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin-top: 40px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #718096;
+            margin-top: 40px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        @media (max-width: 768px) {
+            .calculator-container {
+                flex-direction: column;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .logo {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 15px;
+            }
+            
+            .radio-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .value-grid, .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Digital Future</div>
+            <h1>GitLab Managed Instance Pricing</h1>
+            <p>Calculate your monthly and yearly costs for GitLab Managed Instance in the KSA Region on GCP Cloud</p>
+        </header>
+        
+        <div class="calculator-container">
+            <div class="input-panel">
+                <h2>Configuration</h2>
+                
+                <div class="form-group">
+                    <label for="users">Number of Users:</label>
+                    <div class="users-input-container">
+                        <input type="number" id="users-input" class="users-input" min="1" max="500" value="10">
+                        <span>users</span>
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" id="users-slider" min="1" max="500" value="10">
+                        <span id="users-value" class="users-value">10</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>GitLab License Type:</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="premium" name="license" value="premium" checked>
+                            <label for="premium">Premium ($29/user)</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="ultimate" name="license" value="ultimate">
+                            <label for="ultimate">Ultimate ($99/user)</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Service Level:</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="standard" name="service" value="standard" checked>
+                            <label for="standard">Standard (8x5)</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="enterprise" name="service" value="enterprise">
+                            <label for="enterprise">Enterprise (24x7)</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Add-ons:</label>
+                    <div class="addon-option">
+                        <div class="addon-info">
+                            <div class="addon-title">Additional Storage</div>
+                            <div class="addon-description">$50 per 100 GB per month</div>
+                        </div>
+                        <div class="addon-price">$50/100GB</div>
+                        <input type="number" id="storage-addon" class="addon-input" min="0" value="0" placeholder="Blocks of 100GB">
+                    </div>
+                    
+                    <div class="addon-option">
+                        <div class="addon-info">
+                            <div class="addon-title">DevSecOps & CI/CD SME</div>
+                            <div class="addon-description">$800 per day of expert support</div>
+                        </div>
+                        <div class="addon-price">$800/day</div>
+                        <input type="number" id="sme-addon" class="addon-input" min="0" value="0" placeholder="Days">
+                    </div>
+                </div>
+                
+                <div class="bracket-info">
+                    <h4>Managed Hosting Pricing Brackets:</h4>
+                    <table class="pricing-table">
+                        <thead>
+                            <tr>
+                                <th>Users</th>
+                                <th>Standard (8x5)</th>
+                                <th>Enterprise (24x7)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pricing-table-body">
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="result-panel">
+                <h2>Cost Breakdown</h2>
+                
+                <div class="price-breakdown">
+                    <div class="price-item">
+                        <span>GitLab License Cost:</span>
+                        <span id="license-cost">$290.00</span>
+                    </div>
+                    
+                    <div class="price-item">
+                        <span>Managed Hosting Cost:</span>
+                        <span id="hosting-cost">$350.00</span>
+                    </div>
+                    
+                    <div class="price-item">
+                        <span>Additional Storage:</span>
+                        <span id="storage-cost">$0.00</span>
+                    </div>
+                    
+                    <div class="price-item">
+                        <span>DevSecOps & CI/CD SME:</span>
+                        <span id="sme-cost">$0.00</span>
+                    </div>
+                    
+                    <div class="price-item total">
+                        <span>Total Monthly Cost:</span>
+                        <span id="total-monthly">$640.00</span>
+                    </div>
+                    
+                    <div class="price-item total">
+                        <span>Total Yearly Cost:</span>
+                        <span id="total-yearly">$7,680.00</span>
+                    </div>
+                </div>
+                
+                <div class="current-bracket">
+                    <h4>Current Bracket:</h4>
+                    <p id="current-bracket">1-10 users (Standard: $350, Enterprise: $450)</p>
+                </div>
+                
+                <div class="bracket-info">
+                    <h4>How Pricing Works:</h4>
+                    <p>The managed hosting cost is based on user brackets. Select different user counts to see how the pricing changes at different tiers.</p>
+                    <p>You can use the slider or type directly into the input field to set the number of users.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="value-proposition">
+            <h2>Why Choose Our GitLab Managed Instance?</h2>
+            <p>Our SaaS-like offering on GCP in the KSA region provides businesses with a complete, secure, and high-performance DevSecOps platform.</p>
+            
+            <div class="value-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="value-title">GCP Cloud Infrastructure Management</div>
+                    <div class="value-description">
+                        We handle all aspects of Google Cloud infrastructure management, ensuring optimal performance, scalability, and reliability for your GitLab instance.
+                    </div>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="value-title">Proactive Monitoring & Observability</div>
+                    <div class="value-description">
+                        Our advanced monitoring solutions provide real-time insights into your GitLab instance performance, with proactive alerts and optimization recommendations.
+                    </div>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="value-title">Secure User Access & Compliance</div>
+                    <div class="value-description">
+                        Implement robust access controls and ensure compliance with NCA regulations through Google's security services and our expertise.
+                    </div>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="value-title">Advanced Security Features</div>
+                    <div class="value-description">
+                        Leverage GitLab's advanced security capabilities including SAST, DAST, secret management, container scanning, and dependency scanning.
+                    </div>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div class="value-title">Value Stream Management</div>
+                    <div class="value-description">
+                        Gain business insights through GitLab's advanced value stream analytics, helping you optimize your DevOps processes and accelerate delivery.
+                    </div>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="value-title">High Availability & Reliability</div>
+                    <div class="value-description">
+                        Enjoy 99.9% uptime SLA with optimized performance on Google Cloud infrastructure, designed for demanding DevSecOps workflows.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="professional-services">
+            <h2>Our Professional Services</h2>
+            <p>We offer a wide range of professional services to help you maximize the value of your GitLab implementation</p>
+            
+            <div class="services-grid">
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>Migration Services</h3>
+                    <p>Seamless migration from your current version control and CI/CD systems to GitLab</p>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Compliance Framework</h3>
+                    <p>Build compliance frameworks that meet industry standards and regulatory requirements</p>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3>CI/CD Pipeline Development</h3>
+                    <p>Design and implement efficient CI/CD pipelines tailored to your development workflow</p>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Training & Enablement</h3>
+                    <p>Comprehensive training programs to help your team utilize GitLab's full potential</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="testimonial">
+            <div class="testimonial-text">
+                "Since migrating to the GitLab Managed Instance on GCP, our team has been able to focus entirely on product development while enjoying enterprise-grade security and performance. The value stream analytics have helped us reduce our cycle time by 35%."
+            </div>
+            <div class="testimonial-author">- IT Director, Leading KSA FinTech Company</div>
+        </div>
+        
+             
+        <footer>
+            <p>© 2023 Digital Future - GitLab Managed Instance on GCP - KSA Region | Contact us: info@digital-future.me | +966 12 345 6789</p>
+        </footer>
+    </div>
+
+    <script>
+        // Get DOM elements
+        const usersSlider = document.getElementById('users-slider');
+        const usersInput = document.getElementById('users-input');
+        const usersValue = document.getElementById('users-value');
+        const licenseCost = document.getElementById('license-cost');
+        const hostingCost = document.getElementById('hosting-cost');
+        const storageCost = document.getElementById('storage-cost');
+        const smeCost = document.getElementById('sme-cost');
+        const totalMonthly = document.getElementById('total-monthly');
+        const totalYearly = document.getElementById('total-yearly');
+        const currentBracket = document.getElementById('current-bracket');
+        const pricingTableBody = document.getElementById('pricing-table-body');
+        const storageAddon = document.getElementById('storage-addon');
+        const smeAddon = document.getElementById('sme-addon');
+        
+        // Pricing data based on the Excel sheet
+        const hostingPricing = {
+            standard: {
+                brackets: [
+                    { maxUsers: 10, price: 350 },
+                    { maxUsers: 50, price: 700 },
+                    { maxUsers: 200, price: 1400 },
+                    { maxUsers: Infinity, price: 2500 }
+                ]
+            },
+            enterprise: {
+                brackets: [
+                    { maxUsers: 10, price: 450 },
+                    { maxUsers: 50, price: 900 },
+                    { maxUsers: 200, price: 1800 },
+                    { maxUsers: Infinity, price: 3000 }
+                ]
+            }
+        };
+        
+        // Create pricing table
+        function createPricingTable() {
+            const brackets = [
+                { range: "1-10", standard: 350, enterprise: 450 },
+                { range: "11-50", standard: 700, enterprise: 900 },
+                { range: "51-200", standard: 1400, enterprise: 1800 },
+                { range: "200+", standard: 2500, enterprise: 3000 }
+            ];
+            
+            brackets.forEach(bracket => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${bracket.range}</td>
+                    <td>$${bracket.standard.toLocaleString()}</td>
+                    <td>$${bracket.enterprise.toLocaleString()}</td>
+                `;
+                pricingTableBody.appendChild(row);
+            });
+        }
+        
+        // Update the displayed value when slider moves
+        usersSlider.addEventListener('input', function() {
+            usersInput.value = this.value;
+            usersValue.textContent = this.value;
+            updatePricing();
+            highlightCurrentBracket();
+        });
+        
+        // Update when input value changes
+        usersInput.addEventListener('input', function() {
+            let value = Math.max(1, Math.min(500, parseInt(this.value) || 1));
+            this.value = value;
+            usersSlider.value = value;
+            usersValue.textContent = value;
+            updatePricing();
+            highlightCurrentBracket();
+        });
+        
+        // Update when addon values change
+        storageAddon.addEventListener('input', updatePricing);
+        smeAddon.addEventListener('input', updatePricing);
+        
+        // Add event listeners to radio buttons
+        document.querySelectorAll('input[name="license"]').forEach(radio => {
+            radio.addEventListener('change', updatePricing);
+        });
+        
+        document.querySelectorAll('input[name="service"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                updatePricing();
+                highlightCurrentBracket();
+            });
+        });
+        
+        // Highlight the current bracket in the pricing table
+        function highlightCurrentBracket() {
+            const users = parseInt(usersSlider.value);
+            const rows = pricingTableBody.getElementsByTagName('tr');
+            
+            // Remove highlight from all rows
+            for (let row of rows) {
+                row.classList.remove('highlight');
+            }
+            
+            // Determine which row to highlight based on user count
+            if (users <= 10) {
+                rows[0].classList.add('highlight');
+            } else if (users <= 50) {
+                rows[1].classList.add('highlight');
+            } else if (users <= 200) {
+                rows[2].classList.add('highlight');
+            } else {
+                rows[3].classList.add('highlight');
+            }
+        }
+        
+        // Function to update all pricing information
+        function updatePricing() {
+            const users = parseInt(usersSlider.value);
+            const licenseType = document.querySelector('input[name="license"]:checked').value;
+            const serviceLevel = document.querySelector('input[name="service"]:checked').value;
+            const storageBlocks = parseInt(storageAddon.value) || 0;
+            const smeDays = parseInt(smeAddon.value) || 0;
+            
+            // Calculate license cost
+            const licensePricePerUser = licenseType === 'premium' ? 29 : 99;
+            const totalLicenseCost = users * licensePricePerUser;
+            
+            // Calculate hosting cost based on bracket
+            const brackets = hostingPricing[serviceLevel].brackets;
+            let hostingPrice = 0;
+            let bracketInfo = '';
+            
+            for (const bracket of brackets) {
+                if (users <= bracket.maxUsers) {
+                    hostingPrice = bracket.price;
+                    if (bracket.maxUsers === Infinity) {
+                        bracketInfo = `200+ users (Standard: $2,500, Enterprise: $3,000)`;
+                    } else {
+                        const prevBracket = brackets[brackets.indexOf(bracket) - 1];
+                        const minUsers = prevBracket ? prevBracket.maxUsers + 1 : 1;
+                        bracketInfo = `${minUsers}-${bracket.maxUsers} users (Standard: $${hostingPricing.standard.brackets[brackets.indexOf(bracket)].price.toLocaleString()}, Enterprise: $${hostingPricing.enterprise.brackets[brackets.indexOf(bracket)].price.toLocaleString()})`;
+                    }
+                    break;
+                }
+            }
+            
+            // Calculate addon costs
+            const storagePrice = storageBlocks * 50;
+            const smePrice = smeDays * 800;
+            
+            // Calculate totals
+            const monthlyTotal = totalLicenseCost + hostingPrice + storagePrice + smePrice;
+            const yearlyTotal = monthlyTotal * 12;
+            
+            // Update the UI
+            licenseCost.textContent = `$${totalLicenseCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            hostingCost.textContent = `$${hostingPrice.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            storageCost.textContent = `$${storagePrice.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            smeCost.textContent = `$${smePrice.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            totalMonthly.textContent = `$${monthlyTotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            totalYearly.textContent = `$${yearlyTotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            currentBracket.textContent = bracketInfo;
+        }
+        
+        // Initialize the pricing on page load
+        createPricingTable();
+        updatePricing();
+        highlightCurrentBracket();
+    </script>
+</body>
+</html>
